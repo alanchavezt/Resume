@@ -1,4 +1,14 @@
-jQuery(document).ready(function( $ ) {
+(function ($) {
+  "use strict";
+
+  // Preloader
+  $(window).on('load', function () {
+    if ($('#preloader').length) {
+      $('#preloader').delay(100).fadeOut('slow', function () {
+        $(this).remove();
+      });
+    }
+  });
 
   // Back to top button
   $(window).scroll(function() {
@@ -114,6 +124,9 @@ jQuery(document).ready(function( $ ) {
     (index === 0) ?
     introCarouselIndicators.append("<li data-target='#introCarousel' data-slide-to='" + index + "' class='active'></li>") :
     introCarouselIndicators.append("<li data-target='#introCarousel' data-slide-to='" + index + "'></li>");
+
+    $(this).css("background-image", "url('" + $(this).children('.carousel-background').children('img').attr('src') +"')");
+    $(this).children('.carousel-background').remove();
   });
 
   $(".carousel").swipe({
@@ -167,4 +180,5 @@ jQuery(document).ready(function( $ ) {
     items: 1
   });
 
-});
+})(jQuery);
+
